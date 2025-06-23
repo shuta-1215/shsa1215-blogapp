@@ -9,7 +9,7 @@
         .profilePage_user_actionButton
           = link_to 'Edit', edit_profile_path
       .profilePage_user_introduction
-        あああああああああああああああああああああああああああああああああああああああああああああああああああああ
+        = current_user.profile&.introduction
 
   - current_user.articles.each do |article|
     = render 'commons/article', article: article
