@@ -11,8 +11,10 @@ module Blogapp
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.2
 
-    if ['development', 'test'].include? ENV['RAILS_ENV']
-      Dotenv::Railtie.load
+    if Rails.env.development? || Rails.env.test?
+      if ['development', 'test'].include? ENV['RAILS_ENV']
+        Dotenv::Railtie.load
+      end
     end
 
     # Please, add to the `ignore` list any other `lib` subdirectories that do
