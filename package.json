@@ -4,7 +4,10 @@
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/stimulus-webpack-helpers": "^1.0.1",
-    "@hotwired/turbo-rails": "^8.0.13"
+    "@hotwired/turbo-rails": "^8.0.13",
+    "@rails/actiontext": "^8.1.200",
+    "@rails/webpacker": "^5.4.4",
+    "trix": "^2.1.17"
   },
   "scripts": {
     "build": "webpack --config webpack.config.js"
