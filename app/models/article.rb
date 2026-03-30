@@ -3,7 +3,6 @@
 # Table name: articles
 #
 #  id         :bigint           not null, primary key
-#  content    :text             not null
 #  title      :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
@@ -16,6 +15,7 @@
 class Article < ApplicationRecord
   # Active Storageを利用した関連付けです。記事にアイキャッチ画像（ファイル）を1つ添付できることを示します。
   has_one_attached :eyecatch
+  has_rich_text :content
 
   # 必須（空でないこと）
   validates :title, presence: true
