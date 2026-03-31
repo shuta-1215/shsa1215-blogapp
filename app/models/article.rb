@@ -26,13 +26,6 @@ class Article < ApplicationRecord
 
   # 必須（空でないこと）
   validates :content, presence: true
-  # 10文字以上であること
-  validates :content, length: { minimum: 10 }
-  # 一意であること（他のどの記事とも本文が重複しないこと）
-  validates :content, uniqueness: true
-
-  # validateを使って、privateセクションで定義されたカスタムメソッドを検証として実行します。
-  validate :validate_title_and_content_length
 
   # 1つの記事は複数のコメントを持つことができます。dependent: :destroyにより、記事が削除されたとき、関連するすべてのコメントも自動的に削除されます。
   has_many :comments, dependent: :destroy
@@ -54,13 +47,5 @@ class Article < ApplicationRecord
   # 関連付けられたlikesの数をカウントし、記事に付いているいいねの総数を返します。
   def like_count
     likes.count
-  end
-
-  private
-  # タイトルと本文を合わせた文字数が100文字を超えていることを検証します。
-  def validate_title_and_content_length
-    char_count = self.title.length + self.content.length
-    # 100文字以下の場合、contentフィールドにエラーメッセージ「100文字以上で!」を追加し、保存を中止します。
-    errors.add(:content, '100文字以上で!') unless char_count > 100
   end
 end
