@@ -11,9 +11,15 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  # Devise という認証ライブラリによって、ユーザー認証（サインアップ、ログイン、ログアウト、パスワードリセットなど）に必要な一連のルーティングを一括で定義
   devise_for :users
+
+  # パスが何も指定されていないURLにアクセスがあった場合、ArticlesController の index アクションを実行するように定義。これがアプリケーションの トップページ になる
   root to: 'articles#index'
 
+  # articlesというリソース（多数のデータが存在する集合）に対して、7つのルーティング（index, show, new, create, edit, update, destroy）を全て生成
+  # このブロック内に記述されたルーティングは、articles リソースに紐づいたルーティングとして生成される
   resources :articles do
     resources :comments, only: [:new, :create]
 
